@@ -1,0 +1,807 @@
+1
+DISPLAY THE DEPT INFORMATION FROM DEPARTMENT TABLE.
+SELECT * FROM DEPT;
+2
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE DETAILS OF ALL EMPLOYEES.
+SELECT * FROM EMP;
+3
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE NAME AND JOB FOR ALL EMPLOYEES.
+SELECT ENAME, JOB FROM EMP;
+4
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY NAME AND SALARY FOR ALL EMPLOYEES
+SELECT ENAME, SAL FROM EMP;
+5
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY EMPLOYEE NUMBER AND TOTAL SALARY FOR EACH EMPLOYEE
+SELECT EMPNO, SAL+COMM FROM EMP;
+6
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY EMPLOYEE NAME AND ANNUAL SALARY FOR ALL EMPLOYEES.
+SELECT EMPNO, EMPNAME, 12*SAL+NVL(COMM,0) ANNUALSAL FROM EMP;
+7
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE NAMES OF ALL EMPLOYEES WHO ARE WORKING IN DEPARTMENT NUMBER 10
+SELECT ENAME FROM EMP WHERE DEPTNO=10;
+8
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE NAMES OF ALL EMPLOYEES WORKING AS CLERKS AND DRAWING A SALARYMORE THAN 3000.
+SELECT ENAME FROM EMP WHERE JOB=’CLERK’ AND SAL>3000;
+9
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY EMPLOYEE NUMBER AND NAMES FOR EMPLOYEES WHO EARN COMMISSION.
+SELECT EMPNO, ENAME FROM EMP WHERE COMM IS NOT NULL AND COMM>0;
+10
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY NAMES OF EMPLOYEES WHO DO NOT EARN ANY COMMISSION
+SELECT EMPNO, ENAME FROM EMP WHERE COMM IS NULL AND COMM=0;
+11
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE NAMES OF EMPLOYEES WHO ARE WORKING AS CLERK, SALESMAN OR ANALYSTAND DRAWING A SALARY MORE THAN 3000
+SELECT ENAME FROM EMP WHERE (JOB=’CLERK’ OR JOB=’SALESMAN’ OR JOB=’ANALYST’) AND SAL>3000;
+12
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE NAMES OF EMPLOYEES WHO ARE WORKING IN THE COMPANY FOR THE PAST 5 YEARS.
+SELECT ENAME FROM EMP WHERE SYSDATE-HIREDATE>5*365;
+13
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE LIST OF EMPLOYEES WHO HAVE JOINED THE COMPANY BEFORE 30 TH JUNE 90OR AFTER 31 ST DEC 90
+SELECT * FROM EMP WHERE HIREDATE BETWEEN ‘30-JUN-1990’ AND ‘31-DEC-1990’;
+14
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY CURRENT DATE
+SELECT SYSDATE FROM DUAL;
+15
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE LIST OF USERS IN YOUR DATABASE (USING LOG TABLE)
+SELECT * FROM DBA_USERS;
+
+
+16
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE NAMES OF ALL TABLES FROM THE CURRENT USER
+SELECT * FROM TAB;
+17
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE NAME OF THE CURRENT USER.
+SHOW USER;
+18
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE NAMES OF EMPLOYEES WORKING IN DEPARTMENT NUMBER 10 OR 20 OR 40 OR EMPLOYEES WORKING AS CLERKS, SALESMAN OR ANALYST.
+SELECT ENAME FROM EMP WHERE DEPTNO IN (10,20,40) OR JOB IN(‘CLERK’,’SALESMAN’,’ANALYST’);
+19
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE NAMES OF EMPLOYEES WHOSE NAME STARTS WITH ALPHABET S.
+SELECT ENAME FROM EMP WHERE ENAME LIKE ‘S%’;
+20
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY EMPLOYEE NAMES FOR EMPLOYEES WHOSE NAME ENDS WITH ALPHABET.
+SELECT ENAME FROM EMP WHERE ENAME LIKE ‘%S’;
+21
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE NAMES OF EMPLOYEES WHOSE NAMES HAVE SECOND ALPHABET A IN THEIR NAMES.
+SELECT ENAME FROM EMP WHERE ENAME LIKE ‘_S%’;
+22
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE NAMES OF EMPLOYEES WHOSE NAME IS EXACTLY FIVE CHARACTERS IN LENGTH
+SELECT ENAME FROM EMP WHERE LENGTH(ENAME)=5;
+23
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE NAMES OF EMPLOYEES WHO ARE NOT WORKING AS MANAGERS
+SELECT * FROM EMP MINUS (SELECT * FROM EMP WHERE EMPNO IN (SELECTMGR FROM EMP));
+24
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE NAMES OF EMPLOYEES WHO ARE NOT WORKING AS SALESMAN OR CLERK OR ANALYST
+SELECT ENAME FROM EMP WHERE JOB NOT IN(‘CLERK’,’SALESMAN’,’ANALYST’);
+25
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY ALL ROWS FROM EMP TABLE. THE SYSTEM SHOULD WAIT AFTER EVERY SCREEN FULL OF INFORMATION
+SET PAUSE ON;
+26
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE TOTAL NUMBER OF EMPLOYEES WORKING IN THE COMPANY
+SELECT COUNT(*) FROM EMP;
+27
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE TOTAL SALARY BEING PAID TO ALL EMPLOYEES
+SELECT SUM(SAL)+SUM(NVL(COMM,0)) FROM EMP;
+28
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE MAXIMUM SALARY FROM EMP TABLE
+SELECT MAX(SAL) FROM EMP;
+29
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE MINIMUM SALARY FROM EMP TABLE
+SELECT MIN(SAL) FROM EMP;
+30
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE AVERAGE SALARY FROM EMP TABLE
+SELECT AVG(SAL) FROM EMP;
+31
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE MAXIMUM SALARY BEING PAID TO CLERK
+SELECT MAX(SAL) FROM EMP WHERE JOB=’CLERK’;
+32
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE MAXIMUM SALARY BEING PAID IN DEPT NO 20
+SELECT MAX(SAL) FROM EMP WHERE DEPTNO=20;
+33
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE MIN SAL BEING PAID TO ANY SALESMAN
+SELECT MIN(SAL) FROM EMP WHERE JOB=’SALESMAN’;
+34
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE AVERAGE SALARY DRAWN BY MANAGERS
+SELECT AVG(SAL) FROM EMP WHERE JOB=’MANAGER’;
+35
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE TOTAL SALARY DRAWN BY ANALYST WORKING IN DEPT NO 40
+SELECT SUM(SAL)+SUM(NVL(COMM,0)) FROM EMP WHERE DEPTNO=40;
+36
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE NAMES OF EMPLOYEES IN ORDER OF SALARY I.E. THE NAME OF THE EMPLOYEE EARNING LOWEST SALARY SHOULD APPEAR FIRST
+SELECT ENAME FROM EMP ORDER BY SAL;
+37
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE NAMES OF EMPLOYEES IN DESCENDING ORDER OF SALARY
+SELECT ENAME FROM EMP ORDER BY SAL DESC;
+38
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE DETAILS FROM EMP TABLE IN ORDER OF EMP NAME
+SELECT ENAME FROM EMP ORDER BY ENAME;
+39
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY EMPNO, ENAME, DEPTNO, AND SAL. SORT THE OUTPUT FIRST BASED ON NAMEAND WITHIN NAME BY DEPTNO AND WITHIN DEPTNO BY SAL
+SELECT * FROM EMP ORDER BY ENAME,DEPTNO,SAL;
+40
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE NAME OF THE EMPLOYEE ALONG WITH THEIR ANNUAL SALARY (SAL * 12).THE NAME OF THE EMPLOYEE EARNING HIGHEST ANNUAL SALARY SHOULD APPEAR FIRST
+SELECT ENAME, 12*(SAL+NVL(COMM,0)) ANNUAL FROM EMP ORDER BY12*(SAL+NVL(COMM,0)) DESC;
+41
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY NAME, SAL, HRA, PF, DA, TOTAL SAL FOR EACH EMPLOYEE. THE OUTPUT SHOULD BE IN THE ORDER OF TOTAL SAL, HRA 15% OF SAL, DA 10% OF SAL, PF 5% OF SAL TOTAL SALARY WILL BE (SAL*HRA*DA)-PF
+SELECT ENAME,SAL,SAL*15/100 HRA, SAL*5/100 PF, SAL*10/100DA,SAL+SAL*15/100-SAL*5/100+SAL*10/100 TOTAL_SALARY FROM EMP
+42
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY DEPT NUMBERS AND TOTAL NUMBER OF EMPLOYEES WITHIN EACH GROUP
+SELECT DEPTNO,COUNT(*) FROM EMP GROUP BY DEPTNO;
+43
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE VARIOUS JOBS AND TOTAL NUMBER OF EMPLOYEES WITH EACH JOB GROUP
+SELECT JOB, COUNT(*) FROM EMP GROUP BY JOB;
+44
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY DEPARTMENT NUMBERS AND TOTAL SALARY FOR EACH DEPARTMENT
+SELECT DEPTNO, SUM(SAL) FROM EMP GROUP BY DEPTNO;
+45
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY DEPARTMENT NUMBERS AND MAXIMUM SALARY FOR EACH DEPARTMENT
+SELECT DEPTNO, MAX(SAL),MIN(SAL) FROM EMP GROUP BY DEPTNO;
+46
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE VARIOUS JOBS AND TOTAL SALARY FOR EACH JOB
+SELECT JOB, SUM(SAL) FROM EMP GROUP BY JOB;
+47
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY EACH JOB ALONG WITH MINIMUM SAL BEING PAID IN EACH JOB GROUP
+SELECT JOB, MIN(SAL) FROM EMP GROUP BY JOB;
+48
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE DEPARTMENT NUMBERS WITH MORE THAN THREE EMPLOYEES IN EACH DEPT
+SELECT DEPTNO, COUNT(*) FROM EMP GROUP BY DEPTNO HAVING COUNT(*)>3;
+49
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE VARIOUS JOBS ALONG WITH TOTAL SAL FOR EACH OF THE JOBS WHERE TOTAL SALIS GREATER THAN 40000
+SELECT JOB, SUM(SAL) FROM EMP GROUP BY JOB HAVING SUM(SAL)>40000;
+50
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE VARIOUS JOBS ALONG WITH TOTAL NUMBER OF EMPLOYEES IN EACH JOB. THE OUTPUT SHOULD CONTAIN ONLY THOSE JOBS WITH MORE THAN THREE EMPLOYEES
+SELECT JOB, COUNT(*) FROM EMP GROUP BY JOB HAVING COUNT(*)>3;
+51
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE NAME OF EMP WHO EARNS HIGHEST SAL.
+SELECT ENAME FROM EMP WHERE SAL=(SELECT MAX(SAL) FROM EMP);
+52
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE EMPLOYEE NUMBER AND NAME OF EMPLOYEE WORKING AS CLERK AND EARNING HIGHEST SALARY AMONG CLERKS.
+SELECT EMPNO, ENAME FROM EMP WHERE JOB='CLERK' AND SAL=(SELECT MAX(SAL) FROM EMP WHERE JOB='CLERK');
+53
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE NAMES OF THE SALESMAN WHO EARNS A SALARY MORE THAN THE HIGHEST SALARY OF ANY CLERK.
+SELECT ENAME FROM EMP WHERE JOB=’SALESMAN’ AND SAL > (SELECT MAX(SAL) FROM EMP WHERE JOB='CLERK');
+54
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE NAMES OF CLERKS WHO EARN SALARY MORE THAN THAT OF JAMES OF THAT OF SAL LESSER THAN THAT OF SCOTT
+SELECT ENAME FROM EMP WHERE JOB='CLERK' AND SAL(SELECT SAL FROM EMP WHERE ENAME='JAMES');
+55
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE NAMES OF EMPLOYEES WHO EARN A SAL MORE THAN THAT OF JAMES OR THAT OF SALARY GREATER THAN THAT OF SCOTT.
+SELECT ENAME FROM EMP WHERE SAL (SELECT SAL FROM EMP WHERE ENAME='JAMES');
+56
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE NAMES OF THE EMPLOYEES WHO EARN HIGHEST SALARY IN THEIR RESPECTIVE DEPARTMENTS.
+SELECT * FROM EMP E WHERE SAL = (SELECT MAX(SAL) FROM EMP WHERE DEPTNO=E.DEPTNO)
+57
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE NAMES OF EMPLOYEES WHO EARN HIGHEST SALARIES IN THEIR RESPECTIVE JOB GROUPS.
+SELECT * FROM EMP E WHERE SAL IN (SELECT MAX(SAL) FROM EMP GROUP BY JOB HAVING E.JOB=JOB)
+58
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE EMPLOYEE NAMES WHO ARE WORKING IN ACCOUNTING DEPT.
+SELECT ENAME FROM EMP WHERE DEPTNO = (SELECT DEPTNO FROM DEPT WHERE DNAME=”ACCOUNTING”);
+59
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE EMPLOYEE NAMES WHO ARE WORKING IN CHICAGO.
+SELECT ENAME FROM EMP WHERE DEPTNO = (SELECT DEPTNO FROM DEPT WHERE LOC=’CHICAGO’);
+60
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE JOB GROUPS HAVING TOTAL SALARY GREATER THEN THE MAXIMUM SALARY FOR MANAGERS.
+SELECT JOB, SUM(SAL) FROM EMP GROUP BY JOB HAVING SUM(SAL) > (SELECT MAX(SAL) FROM EMP WHERE JOB='MANAGER');
+61
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE NAMES OF EMPLOYEES FROM DEPARTMENT NUMBER 10 WITH SALARY GREATER THAN THAT OF ANY EMPLOYEE WORKING IN OTHER DEPARTMENTS.
+SELECT ENAME,SAL,DEPTNO FROM EMP E WHERE DEPTNO=10 AND SAL > ANY(SELECT SAL FROM EMP WHERE E.DEPTNO!=DEPTNO);
+62
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE NAMES OF EMPLOYEE FROM DEPARTMENT NUMBER 10 WITH SALARY GREATER THEN THAT OF ALL EMPLOYEE WORKING IN OTHER DEPARTMENTS.
+SELECT ENAME, SAL, DEPTNO FROM EMP E WHERE DEPTNO=10 AND SAL > ANY(SELECT SAL FROM EMP WHERE E.DEPTNO != DEPTNO);
+63
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE NAMES OF EMPLOYEES IN UPPER CASE.
+SELECT UPPER(ENAME) FROM EMP;
+64
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE NAMES OF EMPLOYEES IN LOWER CASE.
+SELECT LOWER(ENAME) FROM EMP;
+65
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE NAME OF EMPLOYEES IN PROPER CASE.
+SELECT INITCAP(ENAME) FROM EMP;
+
+
+66
+ ......... ......... ......... ......... ......... ......... ......... .........
+FIND OUT THE LENGTH OF YOUR NAME USING APPROPRIATE FUNCTION.
+SELECT LENGTH(‘INDIA’) FROM DUAL;
+67
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE LENGTH OF ALL EMPLOYEES’ NAMES.
+SELECT SUM(LENGTH(ENAME)) FROM EMP;
+68
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE NAME OF THE EMPLOYEE CONCATENATE WITH EMP NO.
+SELECT ENAME||EMPNO FROM EMP;
+69
+ ......... ......... ......... ......... ......... ......... ......... .........
+USE APPROPRIATE FUNCTION AND EXTRACT 3 CHARACTERS STARTING FROM 2 CHARACTERS FROM THE FOLLOWING STRING ‘ORACLE’ I.E. THE OUTPUT SHOULD BE ‘RAC’.
+SELECT SUBSTR(‘ORACLE’,2,3) FROM DUAL;
+70
+ ......... ......... ......... ......... ......... ......... ......... .........
+FIND THE FIRST OCCURRENCE OF CHARACTER A FROM THE FOLLOWING STRING ‘COMPUTER MAINTENANCE CORPORATION’.
+SELECT INSTR(‘COMPUTER MAINTENANCE CORPORATION’,’A’,1,1) FROM DUAL;
+71
+ ......... ......... ......... ......... ......... ......... ......... .........
+REPLACE EVERY OCCURRENCE OF ALPHABET A WITH B IN THE STRING ALLEN’S (USER TR ......... ......... ......... ......... ......... ......... ......... .........LATE FUNCTION).
+SELECT REPLACE('ALLENS','A','B') FROM DUAL;
+72
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE INFORMATION FROM EMP TABLE. WHEREVER JOB ‘MANAGER’ IS FOUND IT SHOULD BE DISPLAYED AS BOSS(REPLACE FUNCTION)
+SELECT EMPNO, ENAME, REPLACE(JOB, 'MANAGER', 'BOSS') JOB FROM EMP;
+73
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY EMPNO, ENAME, DEPTNO FROM EMP TABLE. INSTEAD OF DISPLAY DEPARTMENT NUMBERS DISPLAY THE RELATED DEPARTMENT NAME (USE DECODE FUNCTION).
+SELECT E.EMPNO, E.ENAME, D.DNAME FROM EMP E,DEPT D WHERE E.DEPTNO = D.DEPTNO;
+74
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY YOUR AGE IN DAYS.
+SELECT ROUND(SYSDATE-TO_DATE('15-AUG-1947')) FROM DUAL;
+75
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY YOUR AGE IN MONTHS.
+SELECT FLOOR(MONTHS_BETWEEN(SYSDATE,'15-AUG-1947')) "AGE IN MONTHS" FROM DUAL;
+76
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY CURRENT DATE AS 15TH AUGUST FRIDAY NINETEEN FORTY SEVEN.
+SELECT TO_CHAR(SYSDATE,'DDTH MONTH DAY YEAR') FROM DUAL;
+77
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE FOLLOWING OUTPUT FOR EACH ROW FROM EMP TABLE AS ‘SCOTT HAS JOINED THE COMPANY ON WEDNESDAY 13TH AUGUST NINETEEN NINETY’.
+SELECT ENAME||' HAS JOINED THE COMPANY ON '||TO_CHAR(HIREDATE,'DAY DDTH MONTH YEAR') FROM EMP;
+78
+ ......... ......... ......... ......... ......... ......... ......... .........
+FIND THE DATE OF NEAREST SATURDAY AFTER CURRENT DAY.
+SELECT NEXT_DAY(SYSDATE, 'SATURDAY') FROM DUAL;
+79
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY CURRENT TIME.
+SELECT TO_CHAR(SYSDATE,'HH:MI:SS') TIME FROM DUAL;
+80
+ ......... ......... ......... ......... ......... ......... ......... .........
+80. DISPLAY THE DATE THREE MONTHS BEFORE THE CURRENT DATE
+SELECT ADD_MONTHS(SYSDATE,-3) FROM DUAL;
+81
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE COMMON JOBS FROM DEPARTMENT NUMBER 10 AND 20.
+SELECT JOB FROM EMP WHERE DEPTNO=10 AND JOB IN(SELECT JOB FROM EMP WHERE DEPTNO=20);
+82
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE JOBS FOUND IN DEPARTMENT NUMBER 10 AND 20 ELIMINATE DUPLICATE JOBS.
+SELECT DISTINCT(JOB) FROM EMP WHERE DEPTNO=10 AND JOB IN(SELECT JOB FROM EMP WHERE DEPTNO=20);
+83
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE JOBS WHICH ARE UNIQUE TO DEPT NO 10.
+SELECT JOB FROM EMP WHERE DEPTNO=10 MINUS SELECT JOB FROM EMP WHERE DEPTNO!=10;
+84
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE DETAILS OF THOSE WHO DO NOT HAVE ANY PERSON WORKING UNDER THEM.
+SELECT EMPNO FROM EMP WHERE EMPNO NOT IN (SELECT MGR FROM EMP WHERE MGR IS NOT NULL);
+85
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE DETAILS OF EMPLOYEES WHO ARE IN SALES DEPT AND GRADE IS 3.
+SELECT * FROM EMP WHERE SAL>=(SELECT LOSAL FROM SALGRADE WHERE GRADE=3) AND SAL
+86
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THOSE WHO ARE NOT MANAGERS AND WHO ARE MANAGERS ANY ONE.
+SELECT * FROM EMP WHERE EMPNO IN(SELECT MGR FROM EMP) UNION SELECT * FROM EMP WHERE EMPNO NOT IN(SELECT MGR FROM EMP WHERE MGR IS NOT NULL);
+87
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THOSE EMPLOYEES WHOSE NAME CONTAINS NOT LESS THAN 4 CHARS.
+SELECT * FROM EMP WHERE LENGTH(ENAME)>4;
+88
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THOSE DEPARTMENTS WHOSE NAME START WITH ‘S’ WHILE LOCATION NAME END WITH ‘O’.
+SELECT * FROM DEPT WHERE DNAME LIKE 'S%' AND LOC LIKE '%O';
+89
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THOSE EMPLOYEES WHOSE MANAGER NAME IS JONES.
+SELECT * FROM EMP WHERE MGR=(SELECT EMPNO FROM EMP WHERE ENAME='JONES');
+90
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THOSE EMPLOYEES WHOSE SALARY IS MORE THAN 3000 AFTER GIVING 20% INCREMENT.
+SELECT * FROM EMP WHERE SAL+SAL*20/100 > 3000;
+91
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY ALL EMPLOYEES WITH THERE DEPT NAME.
+SELECT ENAME, DNAME FROM EMP E, DEPT D WHERE E.DEPTNO = D.DEPTNO;
+92
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY ENAME WHO ARE WORKING IN SALES DEPT.
+SELECT EMPNO, ENAME FROM EMP WHERE DEPTNO=(SELECT DEPTNO FROM DEPT WHERE DNAME='SALES');
+93
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY EMPLOYEE NAME, DEPTNAME, SALARY AND COMM. FOR THOSE SAL IN BETWEEN 2000 TO 5000 WHILE LOCATION IS CHICAGO.
+SELECT EMPNO,ENAME,DEPTNO FROM EMP WHERE DEPTNO=(SELECT DEPTNO FROM DEPT WHERE LOC='CHICAGO') AND SAL BETWEEN 2000 AND 5000;
+94
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THOSE EMPLOYEES WHOSE SALARY GREATER THAN HIS MANAGER SALARY.
+SELECT * FROM EMP E WHERE SAL>(SELECT SAL FROM EMP WHERE EMPNO=E.MGR);
+95
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THOSE EMPLOYEES WHO ARE WORKING IN THE SAME DEPT WHERE HIS MANAGER IS WORKING.
+SELECT * FROM EMP E WHERE DEPTNO = (SELECT DEPTNO FROM EMP WHERE EMPNO=E.MGR);
+96
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THOSE EMPLOYEES WHO ARE NOT WORKING UNDER ANY MANGER.
+SELECT * FROM EMP WHERE MGR IS NULL OR EMPNO=MGR;
+97
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY GRADE AND EMPLOYEES NAME FOR THE DEPT NO 10 OR 30 BUT GRADE IS NOT 4, WHILE JOINED THE COMPANY BEFORE 31-DEC-82.
+SELECT EMPNO,ENAME,SAL,DEPTNO,HIREDATE,GRADE FROM EMP E,SALGRADE S WHERE E.SAL>=S.LOSAL AND E.SAL4 AND HIREDATE
+98
+ ......... ......... ......... ......... ......... ......... ......... .........
+UPDATE THE SALARY OF EACH EMPLOYEE BY 10% INCREMENTS THAT ARE NOT ELIGIBLE FOR COMMISSION.
+UPDATE EMP SET SAL=SAL+(SAL*10/100) WHERE COMM IS NULL;
+99
+ ......... ......... ......... ......... ......... ......... ......... .........
+DELETE THOSE EMPLOYEES WHO JOINED THE COMPANY BEFORE 31-DEC-82 WHILE THERE DEPT LOCATION IS ‘NEW YORK’ OR ‘CHICAGO’.
+DELETE FROM EMP WHERE HIREDATE
+100
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY EMPLOYEE NAME, JOB, DEPTNAME, LOCATION FOR ALL WHO ARE WORKING AS MANAGERS.
+SELECT ENAME,JOB,DNAME,LOC FROM EMP E, DEPT D WHERE E.DEPTNO=D.DEPTNO AND EMPNO IN (SELECT MGR FROM EMP);
+101
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THOSE EMPLOYEES WHOSE MANAGER NAMES IS JONES, AND ALSO DISPLAY THERE MANAGER NAME.
+SELECT E.EMPNO, E.ENAME, M.ENAME MANAGER FROM EMP E, EMP M WHERE E.MGR=M.EMPNO AND M.ENAME='JONES';
+102
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY NAME AND SALARY OF FORD IF HIS SAL IS EQUAL TO HIGH SAL OF HIS GRADE.
+SELECT ENAME,SAL FROM EMP E WHERE ENAME='FORD' AND SAL=(SELECT HISAL FROM SALGRADE WHERE GRADE=(SELECT GRADE FROM SALGRADE WHERE E.SAL>=LOSAL AND E.SAL
+103
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY EMPLOYEE NAME, HIS JOB, HIS DEPT NAME, HIS MANAGER NAME, HIS GRADE AND MAKE OUT OF AN UNDER DEPARTMENT WISE.
+BREAK ON DEPTNO; SELECT D.DEPTNO, E.ENAME, E.JOB, D.DNAME, M.ENAME, S.GRADE FROM EMP E, EMP M, DEPT D, SALGRADE S WHERE E.DEPTNO=D.DEPTNO AND E.SAL BETWEEN S.LOSAL AND S.HISAL AND E.MGR=M.EMPNO ORDER BY E.DEPTNO;
+104
+ ......... ......... ......... ......... ......... ......... ......... .........
+LIST OUT ALL THE EMPLOYEES NAME, JOB, AND SALARY GRADE AND DEPARTMENT NAME FOR EVERY ONE IN THE COMPANY EXCEPT ‘CLERK’. SORT ON SALARY DISPLAY THE HIGHEST SALARY.
+SELECT EMPNO, ENAME, SAL, DNAME, GRADE FROM EMP E, DEPT D, SALGRADE S WHERE E.DEPTNO=D.DEPTNO AND E.SAL BETWEEN S.LOSAL AND S.HISAL AND E.JOB'CLERK' ORDER BY SAL;
+105
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY EMPLOYEE NAME, HIS JOB AND HIS MANAGER. DISPLAY ALSO EMPLOYEES WHO ARE WITHOUT MANAGER.
+SELECT E.ENAME, E.JOB, M.ENAME MANAGER FROM EMP E,EMP M WHERE E.MGR=M.EMPNO UNION SELECT ENAME,JOB,'NO MANAGER' FROM EMP WHERE MGR IS NULL;
+106
+ ......... ......... ......... ......... ......... ......... ......... .........
+FIND OUT THE TOP 5 EARNER OF COMPANY.
+SELECT * FROM EMP E WHERE 5>(SELECT COUNT(*) FROM EMP WHERE SAL>E.SAL) ORDER BY SAL DESC;
+107
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE NAME OF THOSE EMPLOYEES WHO ARE GETTING HIGHEST SALARY.
+SELECT EMPNO,ENAME,SAL FROM EMP WHERE SAL=(SELECT MAX(SAL) FROM EMP);
+108
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THOSE EMPLOYEES WHOSE SALARY IS EQUAL TO AVERAGE OF MAXIMUM AND MINIMUM.
+SELECT * FROM EMP WHERE SAL=(SELECT (MAX(SAL)+MIN(SAL))/2 FROM EMP);
+109
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY COUNT OF EMPLOYEES IN EACH DEPARTMENT WHERE COUNT GREATER THAN 3.
+SELECT DEPTNO, COUNT(*) FROM EMP GROUP BY DEPTNO HAVING COUNT(*)>3;
+110
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY DNAME WHERE AT LEAST 3 ARE WORKING AND DISPLAY ONLY DNAME
+SELECT DNAME FROM DEPT WHERE DEPTNO IN (SELECT DEPTNO FROM EMP GROUP BY DEPTNO HAVING COUNT(*)>3);
+111
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY NAME OF THOSE MANAGERS NAME WHOSE SALARY IS MORE THAN AVERAGE SALARY OF COMPANY.
+SELECT ENAME, SAL FROM EMP WHERE EMPNO IN(SELECT MGR FROM EMP) AND SAL > (SELECT AVG(SAL) FROM EMP);
+112
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THOSE MANAGERS NAME WHOSE SALARY IS MORE THAN AN AVERAGE SALARY OF HIS EMPLOYEES.
+SELECT ENAME, SAL FROM EMP E WHERE EMPNO IN(SELECT MGR FROM EMP) AND E.SAL>(SELECT AVG(SAL) FROM EMP WHERE MGR=E.EMPNO);
+113
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY EMPLOYEE NAME, SAL, COMM AND NET PAY FOR THOSE EMPLOYEES WHOSE NET PAY ARE GREATER THAN OR EQUAL TO ANY OTHER EMPLOYEE SALARY OF THE COMPANY?
+SELECT ENAME, SAL, COMM, SAL+NVL(COMM,0) NETPAY FROM EMP WHERE SAL+NVL(COMM.,0)>=ANY(SELECT SAL FROM EMP);
+114
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THOSE EMPLOYEES WHOSE SALARY IS LESS THAN HIS MANAGER BUT MORE THAN SALARY OF ANY OTHER MANAGERS.
+SELECT * FROM EMP E WHERE SALANY(SELECT SAL FROM EMP WHERE EMPNO!=E.MGR);
+115
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY ALL EMPLOYEES NAMES WITH TOTAL SAL OF COMPANY WITH EMPLOYEE NAME. SELECT ENAME,
+SELECT ENAME, SAL FROM EMP
+
+
+116
+ ......... ......... ......... ......... ......... ......... ......... .........
+FIND OUT THE LAST 5(LEAST) EARNER OF THE COMPANY?
+SELECT * FROM EMP E WHERE 5>(SELECT COUNT(*) FROM EMP WHERE SAL
+117
+ ......... ......... ......... ......... ......... ......... ......... .........
+FIND OUT THE NUMBER OF EMPLOYEES WHOSE SALARY IS GREATER THAN THERE MANAGER SALARY?
+SELECT COUNT(*) FROM EMP E WHERE SAL>(SELECT SAL FROM EMP WHERE EMPNO=E.MGR);
+118
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THOSE MANAGER WHO ARE NOT WORKING UNDER PRESIDENT BUT THEY ARE WORKING UNDER ANY OTHER MANAGER?
+SELECT * FROM EMP E WHERE MGR IN(SELECT EMPNO FROM EMP WHERE ENAME'KING');
+119
+ ......... ......... ......... ......... ......... ......... ......... .........
+DELETE THOSE DEPARTMENT WHERE NO EMPLOYEE WORKING?
+DELETE FROM DEPT D WHERE 0=(SELECT COUNT(*) FROM EMP WHERE DEPTNO=D.DEPTNO);
+120
+ ......... ......... ......... ......... ......... ......... ......... .........
+DELETE THOSE RECORDS FROM EMP TABLE WHOSE DEPTNO NOT AVAILABLE IN DEPT TABLE?
+DELETE FROM EMP WHERE DEPTNO NOT IN(SELECT DEPTNO FROM DEPT);
+121
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THOSE EARNERS WHOSE SALARY IS OUT OF THE GRADE AVAILABLE IN SAL GRADE TABLE?
+SELECT * FROM EMP WHERE SAL(SELECT MAX(HISAL) FROM SALGRADE);
+122
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY EMPLOYEE NAME, SAL, COMM. AND WHOSE NET PAY IS GREATER THAN ANY OTHER IN THE COMPANY?
+SELECT ENAME, SAL, COMM FROM EMP WHERE SAL+SAL*15/100-SAL*5/100 +SAL*10/100 = (SELECT MAX(SAL+SAL*15/100-SAL*5/100+SAL*10/100) FROM EMP);
+123
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY NAME OF THOSE EMPLOYEES WHO ARE GOING TO RETIRE 31-DEC-99. IF THE MAXIMUM JOB IS PERIOD IS 18 YEARS?
+SELECT * FROM EMP WHERE (TO_DATE('31-DEC-1999')-HIREDATE)/365>18;
+124
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THOSE EMPLOYEES WHOSE SALARY IS ODD VALUE?
+SELECT * FROM EMP WHERE MOD(SAL,2)=1;
+125
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THOSE EMPLOYEES WHOSE SALARY CONTAINS AT LEAST 4 DIGITS?
+SELECT * FROM EMP WHERE LENGTH(SAL)>=4;
+126
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THOSE EMPLOYEES WHO JOINED IN THE COMPANY IN THE MONTH OF DEC?
+SELECT * FROM EMP WHERE UPPER(TO_CHAR(HIREDATE,'MON'))='DEC';
+127
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THOSE EMPLOYEES WHOSE NAME CONTAINS “A”?
+SELECT * FROM EMP WHERE INSTR(ENAME,'A',1,1)>0;
+128
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THOSE EMPLOYEES WHOSE DEPTNO IS AVAILABLE IN SALARY?
+SELECT * FROM EMP WHERE INSTR(SAL,DEPTNO,1,1)>0;
+129
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THOSE EMPLOYEES WHOSE FIRST 2 CHARACTERS FROM HIRE DATE-LAST 2 CHARACTERS OF SALARY?
+SELECT SUBSTR(HIREDATE,0,2)||SUBSTR(SAL,LENGTH(SAL)-1,2) FROM EMP; SELECT CONCAT( SUBSTR(HIREDATE,0,2), SUBSTR(SAL,LENGTH(SAL)-1,2) ) FROM EMP;
+130
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THOSE EMPLOYEES WHOSE 10% OF SALARY IS EQUAL TO THE YEAR OF JOINING?
+SELECT * FROM EMP WHERE TO_CHAR(HIREDATE,'YY')=SAL*10/100;
+131
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THOSE EMPLOYEES WHO ARE WORKING IN SALES OR RESEARCH?
+SELECT * FROM EMP WHERE DEPTNO IN(SELECT DEPTNO FROM DEPT WHERE DNAME IN('SALES','RESEARCH'));
+132
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE GRADE OF JONES?
+SELECT GRADE FROM SALGRADE WHERE LOSAL=(SELECT(SAL) FROM EMP WHERE ENAME='JONES');
+133
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THOSE EMPLOYEES WHO JOINED THE COMPANY BEFORE 15TH OF THE MONTH?
+SELECT EMPNO,ENAME FROM EMP WHERE HIREDATE
+134
+ ......... ......... ......... ......... ......... ......... ......... .........
+DELETE THOSE RECORDS WHERE NO OF EMPLOYEE IN A PARTICULAR DEPARTMENT IS LESS THAN 3?
+DELETE FROM EMP WHERE DEPTNO IN(SELECT DEPTNO FROM EMP GROUP BY DEPTNO HAVING COUNT(*)>3);
+135
+ ......... ......... ......... ......... ......... ......... ......... .........
+DELETE THOSE EMPLOYEES WHO JOINED THE COMPANY 21 YEARS BACK FROM TODAY?
+SELECT * FROM EMP WHERE ROUND((SYSDATE-HIREDATE)/365)>21; OR SELECT * FROM EMP WHERE (TO_CHAR (SYSDATE, 'YYYY')-TO_CHAR (HIREDATE ,'YYYY') )>21;
+136
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE DEPARTMENT NAME THE NO OF CHARACTERS OF WHICH IS EQUAL TO NO OF EMPLOYEES IN ANY OTHER DEPARTMENT?
+SELECT DNAME FROM DEPT WHERE LENGTH(DNAME) IN (SELECT COUNT(*) FROM EMP GROUP BY DEPTNO);
+137
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THOSE EMPLOYEES WHO ARE WORKING AS MANAGER?
+SELECT * FROM EMP WHERE EMPNO IN(SELECT MGR FROM EMP);
+138
+ ......... ......... ......... ......... ......... ......... ......... .........
+COUNT THE NO OF EMPLOYEES WHO ARE WORKING AS MANAGER (USE SET OPERATION)?
+SELECT COUNT(*) FROM EMP WHERE EMPNO IN(SELECT MGR FROM EMP);
+139
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE NAME OF THEN DEPT THOSE EMPLOYEES WHO JOINED THE COMPANY ON THE SAME DATE?
+SELECT EMPNO,ENAME,HIREDATE,DEPTNO FROM EMP E WHERE HIREDATE IN (SELECT HIREDATE FROM EMP WHERE EMPNOE.EMPNO);
+140
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THOSE EMPLOYEES WHOSE GRADE IS EQUAL TO ANY NUMBER OF SAL BUT NOT EQUAL TO FIRST NUMBER OF SAL?
+SELECT ENAME FROM EMP WHERE SAL BETWEEN (SELECT LOSAL FROM SALGRADE WHERE GRADE=TO_CHAR(HIREDATE,'MM')) AND (SELECT HISAL FROM SALGRADE WHERE GRADE=TO_CHAR(HIREDATE,'MM'));
+141
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE MANAGER WHO IS HAVING MAXIMUM NUMBER OF EMPLOYEES WORKING UNDER HIM?
+SELECT MGR FROM EMP GROUP BY MGR HAVING COUNT(*)=(SELECT MAX(COUNT(MGR)) FROM EMP GROUP BY MGR);
+142
+ ......... ......... ......... ......... ......... ......... ......... .........
+LIST OUT EMPLOYEES NAME AND SALARY INCREASED BY 15% AND EXPRESSED AS WHOLE NUMBER OF DOLLARS?
+SELECT EMPNO,ENAME,LPAD(CONCAT('$',ROUND(SAL*115/100)),7) SALARY FROM EMP;
+143
+ ......... ......... ......... ......... ......... ......... ......... .........
+PRODUCE THE OUTPUT OF THE EMP TABLE “EMPLOYEE_AND_JOB” FOR ENAME AND JOB?
+SELECT * FROM EMPLOYEE_AND_JOB;
+144
+ ......... ......... ......... ......... ......... ......... ......... .........
+LIST ALL EMPLOYEES WITH HIRE DATE IN THE FORMAT ‘JUNE 4 1988’?
+SELECT TO_CHAR(HIREDATE,'MONTH DD YYYY') FROM EMP;
+145
+ ......... ......... ......... ......... ......... ......... ......... .........
+PRINT A LIST OF EMPLOYEES DISPLAYING ‘LESS SALARY’ IF LESS THAN 1500 IF EXACTLY 1500 DISPLAY AS ‘EXACT SALARY’ AND IF GREATER THAN 1500 DISPLAY ‘MORE SALARY’?
+SELECT EMPNO,ENAME,'LESS SALARY '||SAL FROM EMP WHERE SAL1500 UNION SELECT EMPNO,ENAME,'EXACT SALARY '||SAL FROM EMP WHERE SAL=1500
+146
+ ......... ......... ......... ......... ......... ......... ......... .........
+WRITE QUERY TO CALCULATE THE LENGTH OF EMPLOYEE HAS BEEN WITH THE COMPANY?
+SELECT ROUND(SYSDATE-HIREDATE) FROM EMP;
+147
+ ......... ......... ......... ......... ......... ......... ......... .........
+LIST THE EMPS WHO ARE DRAWING LESS THAN 1000 SORT THE OUTPUT BY SALARY.
+SELECT * FROM EMP WHERE SAL
+148
+ ......... ......... ......... ......... ......... ......... ......... .........
+LIST THE EMPLOYEE NAME, JOB, ANNUAL SALARY, DEPTNO, DEPT NAME AND GRADE WHO EARN 36000 A YEAR OR WHO ARE NOT CLERKS.
+SELECTE.ENAME,E.JOB,(12*E.SAL)"ANNUALSALARY", E.DEPTNO,D.DNAME,S.GRADE FROM EMP E,DEPT D ,SALGRADE S WHERE E.DEPTNO = D.DEPTNO AND E.SAL BETWEEN S.LOSAL AND S.HISAL AND (((12*E.SAL)>= 36000) OR (E.JOB != 'CLERK'))
+149
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THOSE MANGERS WHO ARE GETTING LESS THAN HIS EMPLOYEES SAL
+SELECT EMPNO FROM EMP E WHERE SAL
+150
+ ......... ......... ......... ......... ......... ......... ......... .........
+150. PRINT THE DETAILS OF ALL THE EMPLOYEES WHO ARE SUB ORDINATE TO BLAKE.
+SELECT * FROM EMP WHERE MGR=(SELECT EMPNO FROM EMP WHERE ENAME='BLAKE');
+
+151
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THOSE WHO WORKING AS MANAGER USING CO RELATED SUB QUERY.
+SELECT * FROM EMP WHERE EMPNO IN(SELECT MGR FROM EMP);
+152
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THOSE EMPLOYEES WHOSE MANGER NAME IS JONES AND ALSO WITH HIS MANAGER NAME
+SELECT * FROM EMP WHERE MGR=(SELECT EMPNO FROM EMP WHERE ENAME='JONES') UNION SELECT * FROM EMP WHERE EMPNO=(SELECT MGR FROM EMP WHERE ENAME='JONES');
+153
+ ......... ......... ......... ......... ......... ......... ......... .........
+DEFINE VARIABLE REPRESENTING THE EXPRESSIONS USED TO CALCULATE ON EMPLOYEE’S TOTAL ANNUAL RENUMARATION.
+DEFINE EMP_ANN_SAL=(SAL+NVL(COMM,0))*12;
+154
+ ......... ......... ......... ......... ......... ......... ......... .........
+USE THE VARIABLE IN A STATEMENT WHICH FINDS ALL EMPLOYEES WHO CAN EARN 30,000 A YEAR OR MORE.
+SELECT * FROM EMP WHERE &EMP_ANN_SAL>30000;
+155
+ ......... ......... ......... ......... ......... ......... ......... .........
+FIND OUT HOW MANY MANGERS ARE THERE WITH OUT LISTING THEM.
+SELECT COUNT (*) FROM EMP WHERE EMPNO IN (SELECT MGR FROM EMP);
+156
+ ......... ......... ......... ......... ......... ......... ......... .........
+FIND OUT THE AVG SAL AND AVG TOTAL REMUNERATION FOR EACH JOB TYPE REMEMBER SALESMAN EARN COMMISSION.
+SELECT JOB,AVG(SAL+NVL(COMM,0)),SUM(SAL+NVL(COMM,0)) FROM EMP GROUP BY JOB;
+157
+ ......... ......... ......... ......... ......... ......... ......... .........
+CHECK WHETHER ALL EMPLOYEES NUMBER ARE INDEED UNIQUE
+SELECT COUNT(EMPNO),COUNT(DISTINCT(EMPNO)) FROM EMP HAVING COUNT(EMPNO)=(COUNT(DISTINCT(EMPNO)));
+158
+ ......... ......... ......... ......... ......... ......... ......... .........
+LIST OUT THE LOWEST PAID EMPLOYEES WORKING FOR EACH MANAGER, EXCLUDE ANY GROUPS WHERE MIN SAL IS LESS THAN 1000 SORT THE OUTPUT BY SAL.
+SELECT E.ENAME,E.MGR,E.SAL FROM EMP E WHERE SAL IN(SELECT MIN(SAL) FROM EMP WHERE MGR=E.MGR) AND E.SAL>1000 ORDER BY SAL;
+159
+ ......... ......... ......... ......... ......... ......... ......... .........
+LIST ENAME, JOB, ANNUAL SAL, DEPTNO, DNAME AND GRADE WHO EARN 30000 PER YEAR AND WHO ARE NOT CLERKS.
+SELECT E.ENAME, E.JOB, (E.SAL+NVL(E.COMM,0))*12, E.DEPTNO, D.DNAME, S.GRADE FROM EMP E, SALGRADE S , DEPT D WHERE E.SAL BETWEEN S.LOSAL AND S.HISAL AND E.DEPTNO=D.DEPTNO AND (E.SAL+NVL(COMM,0))*12> 30000 AND E.JOB 'CLERK';
+160
+ ......... ......... ......... ......... ......... ......... ......... .........
+FIND OUT THE JOB THAT WAS FAILED IN THE FIRST HALF OF 1983 AND THE SAME JOB THAT WAS FAILED DURING THE SAME PERIOD ON 1984.
+161
+ ......... ......... ......... ......... ......... ......... ......... .........
+FIND OUT THE ALL EMPLOYEES WHO JOINED THE COMPANY BEFORE THEIR MANAGER.
+SELECT * FROM EMP E WHERE HIREDATE
+162
+ ......... ......... ......... ......... ......... ......... ......... .........
+LIST OUT THE ALL EMPLOYEES BY NAME AND NUMBER ALONG WITH THEIR MANAGER’S NAME AND NUMBER ALSO DISPLAY ‘NO MANAGER’ WHO HAS NO MANAGER.
+SELECT E.EMPNO,E.ENAME,M.EMPNO MANAGER,M.ENAME MANAGERNAME FROM EMP E,EMP M WHERE E.MGR=M.EMPNO UNION SELECT EMPNO,ENAME,MGR,'NO MANAGER' FROM EMP WHERE MGR IS NULL;
+163
+ ......... ......... ......... ......... ......... ......... ......... .........
+FIND OUT THE EMPLOYEES WHO EARNED THE HIGHEST SAL IN EACH JOB TYPED SORT IN DESCENDING SAL ORDER.
+SELECT * FROM EMP E WHERE SAL =(SELECT MAX(SAL) FROM EMP WHERE JOB=E.JOB);
+164
+ ......... ......... ......... ......... ......... ......... ......... .........
+FIND OUT THE EMPLOYEES WHO EARNED THE MIN SAL FOR THEIR JOB IN ASCENDING ORDER.
+SELECT * FROM EMP E WHERE SAL =(SELECT MIN(SAL) FROM EMP WHERE JOB=E.JOB) ORDER BY SAL;
+165
+ ......... ......... ......... ......... ......... ......... ......... .........
+FIND OUT THE MOST RECENTLY HIRED EMPLOYEES IN EACH DEPT ORDER BY HIRE DATE
+SELECT * FROM EMP ORDER BY DEPTNO,HIREDATE DESC;
+
+
+166
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY ENAME, SAL AND DEPTNO FOR EACH EMPLOYEE WHO EARN A SAL GREATER THAN THE AVG OF THEIR DEPARTMENT ORDER BY DEPTNO
+SELECT ENAME,SAL,DEPTNO FROM EMP E WHERE SAL>(SELECT AVG(SAL) FROM EMP WHERE DEPTNO=E.DEPTNO) ORDER BY DEPTNO;
+167
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE DEPARTMENT WHERE THERE ARE NO EMPLOYEES
+SELECT DEPTNO,DNAME FROM DEPT WHERE DEPTNO NOT IN(SELECT DISTINCT(DEPTNO) FROM EMP);
+168
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE DEPT NO WITH HIGHEST ANNUAL REMUNERATION BILL AS COMPENSATION.
+SELECT DEPTNO,SUM(SAL) FROM EMP GROUP BY DEPTNO HAVING SUM(SAL) = (SELECT MAX(SUM(SAL)) FROM EMP GROUP BY DEPTNO);
+169
+ ......... ......... ......... ......... ......... ......... ......... .........
+IN WHICH YEAR DID MOST PEOPLE JOIN THE COMPANY. DISPLAY THE YEAR AND NUMBER OF EMPLOYEES
+SELECT COUNT(*),TO_CHAR(HIREDATE,'YYYY') FROM EMP GROUP BY TO_CHAR(HIREDATE,'YYYY');
+170
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY AVG SAL FIGURE FOR THE DEPT
+SELECT DEPTNO,AVG(SAL) FROM EMP GROUP BY DEPTNO;
+171
+ ......... ......... ......... ......... ......... ......... ......... .........
+WRITE A QUERY OF DISPLAY AGAINST THE ROW OF THE MOST RECENTLY HIRED EMPLOYEE. DISPLAY ENAME HIRE DATE AND COLUMN MAX DATE SHOWING.
+SELECT EMPNO,HIREDATE FROM EMP WHERE HIREDATE=(SELECT MAX (HIREDATE) FROM EMP);
+172
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY EMPLOYEES WHO CAN EARN MORE THAN LOWEST SAL IN DEPT NO 30
+SELECT * FROM EMP WHERE SAL>(SELECT MIN(SAL) FROM EMP WHERE DEPTNO=30);
+173
+ ......... ......... ......... ......... ......... ......... ......... .........
+FIND EMPLOYEES WHO CAN EARN MORE THAN EVERY EMPLOYEES IN DEPT NO 30
+SELECT * FROM EMP WHERE SAL>(SELECT MAX(SAL) FROM EMP WHERE DEPTNO=30); SELECT * FROM EMP WHERE SAL>ALL(SELECT SAL FROM EMP WHERE DEPTNO=30);
+174
+ ......... ......... ......... ......... ......... ......... ......... .........
+SELECT DEPT NAME DEPT NO AND SUM OF SAL
+BREAK ON DEPTNO ON DNAME; SELECT E.DEPTNO,D.DNAME,SAL FROM EMP E, DEPT D WHERE E.DEPTNO=D.DEPTNO ORDER BY E.DEPTNO;
+175
+ ......... ......... ......... ......... ......... ......... ......... .........
+CREATE TABLE CALLED AS NEW EMP. USING SINGLE COMMAND CREATE THIS TABLE AS WELL AS TO GET DATA INTO THIS TABLE (USE CREATE TABLE AS)
+CREATE TABLE NEWEMP AS SELECT *FROM EMP;
+176
+ ......... ......... ......... ......... ......... ......... ......... .........
+FIND ALL DEPT’S WHICH HAVE MORE THAN 3 EMPLOYEES
+SELECT DEPTNO FROM EMP GROUP BY DEPTNO HAVING COUNT(*)>3;
+177
+ ......... ......... ......... ......... ......... ......... ......... .........
+DELETE THE ROWS OF EMPLOYEES WHO ARE WORKING IN THE COMPANY FOR MORE THAN 2 YEARS
+DELETE FROM EMP WHERE FLOOR(SYSDATE-HIREDATE)>2*365;
+178
+ ......... ......... ......... ......... ......... ......... ......... .........
+IF ANY EMPLOYEE HAS COMMISSION HIS COMMISSION SHOULD BE INCREMENTED BY 10% OF HIS SALARY.
+UPDATE EMP SET COMM=COMM*10/100 WHERE COMM IS NOT NULL;
+179
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY EMPLOYEE NUMBER, NAME AND LOCATION OF THE DEPARTMENT IN WHICH HE IS WORKING
+SELECT EMPNO, ENAME, LOC FROM EMP E, DEPT D WHERE E.DEPTNO=D.DEPTNO;
+180
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY EMPLOYEE NAME AND DEPARTMENT NAME FOR EACH EMPLOYEE
+SELECT ENAME,DNAME FROM EMP E, DEPT D WHERE E.DEPTNO=D.DEPTNO;
+181
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THE HALF OF THE ENAMES IN UPPER CASE AND REMAINING LOWER CASE
+SELECT CONCAT ( UPPER ( SUBSTR ( ENAME, 0 , LENGTH (ENAME)/ 2) ), LOWER (SUBSTR (ENAME, LENGTH(ENAME) / 2+1, LENGTH(ENAME) )) ) FROM EMP;
+182
+ ......... ......... ......... ......... ......... ......... ......... .........
+ADD DEPT NO COLUMN TO YOUR EMP TABLE
+ALTER TABLE EMP ADD DEPTNO NUMBER(3);
+183
+ ......... ......... ......... ......... ......... ......... ......... .........
+PROVIDE A COMMISSION TO EMPLOYEES WHO ARE NOT EARNING ANY COMMISSION
+UPDATE EMP SET COMM=300 WHERE COMM IS NULL;
+184
+ ......... ......... ......... ......... ......... ......... ......... .........
+CREATE A COPY OF EMP TABLE.
+CREATE TABLE EMP1 AS SELECT * FROM EMP;
+185
+ ......... ......... ......... ......... ......... ......... ......... .........
+SELECT ENAME IF ENAME EXISTS MORE THAN ONCE
+SELECT DISTINCT(ENAME) FROM EMP E WHERE ENAME IN(SELECT ENAME FROM EMP WHERE E.EMPNOEMPNO);
+186
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY ALL ENAMES IN REVERSE ORDER.
+SELECT ENAME FROM EMP ORDER BY ENAME DESC;
+187
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THOSE EMPLOYEE WHOSE JOINING OF MONTH AND GRADE IS EQUAL.
+SELECT EMPNO,ENAME FROM EMP E, SALGRADE S WHERE E.SAL BETWEEN S.LOSAL AND S.HISAL AND TO_CHAR(HIREDATE,'MM')=GRADE;
+188
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THOSE EMPLOYEE WHOSE JOINING DATE IS AVAILABLE IN DEPT NO
+SELECT * FROM EMP WHERE TO_CHAR(HIREDATE,'DD')=DEPTNO;
+189
+ ......... ......... ......... ......... ......... ......... ......... .........
+DISPLAY THOSE EMPLOYEES NAME AS FOLLOWS A ALLEN, B BLAKE
+SELECT SUBSTR(ENAME,1,1)||' '||ENAME FROM EMP;
+190
+ ......... ......... ......... ......... ......... ......... ......... .........
+LIST OUT THE EMPLOYEES ENAME, SAL, PF FROM EMP
+SELECT ENAME,SAL,SAL*15/100 PF FROM EMP;
+191
+ ......... ......... ......... ......... ......... ......... ......... .........
+CREATE RELATION BETWEEN TWO COLUMNS. GIVE A COMMAND TO ADD THIS CONSTRAINT
+ALTER TABLE EMP ADD CONSTRAINT EMP_MGR FOREIGN KEY(EMPNO);
+192
+ ......... ......... ......... ......... ......... ......... ......... .........
+CREATE TABLE EMP WITH ONLY ONE COLUMN EMPNO
+CREATE TABLE EMP (EMPNO NUMBER(5));
+193
+ ......... ......... ......... ......... ......... ......... ......... .........
+ADD THIS COLUMN TO EMP TABLE ENAME VARCHAR(20).
+ALTER TABLE EMP ADD ENAME VARCHAR2(20) NOT NULL;
+194
+ ......... ......... ......... ......... ......... ......... ......... .........
+OOPS! I FORGOT TO GIVE THE PRIMARY KEY CONSTRAINT. ADD IT NOW.
+ALTER TABLE EMP ADD CONSTRAINT EMP_EMPNO PRIMARY KEY (EMPNO);
+195
+ ......... ......... ......... ......... ......... ......... ......... .........
+NOW INCREASE THE LENGTH OF ENAME COLUMN TO 30 CHARACTERS.
+ALTER TABLE EMP MODIFY ENAME VARCHAR2(30);
+196
+ ......... ......... ......... ......... ......... ......... ......... .........
+ADD SALARY COLUMN TO EMP TABLE.
+ALTER TABLE EMP ADD SAL NUMBER(7,2);
+197
+ ......... ......... ......... ......... ......... ......... ......... .........
+I WANT TO GIVE A VALIDATION SAYING THAT SAL CANNOT BE GREATER 10,000(NOTE GIVE A NAME TO THIS COLUMN).
+ALTER TABLE EMP ADD CONSTRAINT EMP_SAL_CHECK CHECK (SAL
+198
+ ......... ......... ......... ......... ......... ......... ......... .........
+FOR THE TIME BEING I HAVE DECIDED THAT I WILL NOT IMPOSE THIS VALIDATION. MY BOSS HAS AGREED TO PAY MORE THAN 10,000.
+ALTER TABLE EMP DISABLE CONSTRAINT EMP_SAL_CHECK;
+199
+ ......... ......... ......... ......... ......... ......... ......... .........
+MY BOSS HAS CHANGED HIS MIND. NOW HE DOESN’T WANT TO PAY MORE THAN 10,000. SO REVOKE THAT SALARY CONSTRAINT
+ALTER TABLE EMP ENABLE CONSTRAINT EMP_SAL_CHECK;
+200
+ ......... ......... ......... ......... ......... ......... ......... .........
+ADD COLUMN CALLED AS MGR TO YOUR EMP TABLE
+ALTER TABLE EMP ADD MGR NUMBER(5);
